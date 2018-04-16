@@ -4,8 +4,8 @@ const { Advisor, Ticket, db }  = require('./server/db/models')
 const faker = require('faker');
 const chance = require('chance')('Warby');
 
-const numOfTickets = 20;
-const numOfAdvisors = 15;
+const numOfTickets = 0;
+const numOfAdvisors = 0;
 
 const doTimes = (n, func) => {
   const result = [];

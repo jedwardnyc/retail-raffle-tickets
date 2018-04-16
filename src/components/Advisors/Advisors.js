@@ -28,14 +28,14 @@ class Advisors extends Component {
         <h1> All Advisors </h1>
         {
           !editing ? null :
-          <form onSubmit={this.create}>
-            <input onChange={(ev) => this.setState({ name: ev.target.value })}/>
-            <button> Add Advisor </button>
+          <form className='form-inline' onSubmit={this.create}>
+            <input className='form-control' onChange={(ev) => this.setState({ name: ev.target.value })}/>&nbsp;
+            <button className='btn btn-sm btn-dark'> Add Advisor </button>
           </form>
         }
         <button 
           onClick={() => editing ? this.setState({ editing: false }) : this.setState({ editing: true })} 
-          className='btn btn-dark btn-sm'> 
+          className={editing ? 'btn btn-danger btn-sm' : 'btn btn-dark btn-sm' }> 
             { 
               !editing ? 'Add Advisor' : 'Cancel'
             }
@@ -44,6 +44,9 @@ class Advisors extends Component {
         <br />
         <ul className='list-group'>
           {
+            !advisors.length ? 
+            <h2> There are no Advisors, please add some! </h2>
+            :
             advisors.map(advisor => {
               return (
                 <AdvisorItem key={advisor.id} advisor={advisor}/>

@@ -4,12 +4,17 @@ import TicketItem from './TicketItem';
 
 const Tickets = (props) => {
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const { tickets } = props;
+  console.log(tickets)
   return (
     <div>
       <h1> All Tickets </h1>
       <ul className='list-group'>
         {
-          props.tickets.map(ticket => <TicketItem key={ticket.id} ticket={ticket} /> )
+          !tickets.length ?
+          <h2> Whoops! Looks like no one has any tickets yet...</h2>
+          :
+          tickets.map(ticket => <TicketItem key={ticket.id} ticket={ticket} /> )
         }
       </ul>
     </div>

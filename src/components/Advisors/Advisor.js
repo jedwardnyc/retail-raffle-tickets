@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import AdvisorItem from './AdvisorItem';
 
 const Advisor = (props) => {
+  if(!props.advisor) return null
   return <AdvisorItem advisor={props.advisor}/>
 };
 

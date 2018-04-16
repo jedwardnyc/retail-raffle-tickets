@@ -18,10 +18,12 @@ class AdvisorForm extends Component {
 
   render(){
     return (
-      <form onSubmit={this.create}>
-        <input onChange={(ev) => this.setState({ name: ev.target.value })}/>
-        <button> Add Advisor </button>
-      </form>
+      <div>
+        <form className='form-control' onSubmit={this.create}>
+          <input onChange={(ev) => this.setState({ name: ev.target.value })}/>
+          <button className='btn btn-sm btn-success'> Add Advisor </button>
+        </form>
+      </div>
     )
   }
 }
