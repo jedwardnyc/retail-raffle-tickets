@@ -8,7 +8,6 @@
     "start:dev": "npm run webpack -- -w & nodemon server",
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "seed": "node seed",
-    "db-init": "pg-init warby_tickets"
   },
   "author": "Jacob Rico",
   "license": "ISC",
