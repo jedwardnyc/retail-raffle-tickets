@@ -7,7 +7,7 @@
     "postinstall": "npm run db-init && npm run webpack",
     "start:dev": "npm run webpack -- -w & nodemon server",
     "webpack": "./node_modules/webpack/bin/webpack.js",
-    "seed": "node seed",
+    "seed": "node seed"
   },
   "author": "Jacob Rico",
   "license": "ISC",
