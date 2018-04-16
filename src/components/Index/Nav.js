@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const Nav = () => {
   // const { isAdmin } = props;
   return (
-    <nav style={{marginBottom: '15px'}} className='navbar navbar-expand navbar-light bg-light'>
+    <nav style={{marginBottom: '15px' }} className='navbar navbar-expand navbar-light'>
       {/* { isAdmin ?  */}
         <ul className='navbar-nav'>
           <li className='nav-item'>

@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm run webpack",
+    "postinstall": "npm run db-init && npm run webpack",
     "start:dev": "npm run webpack -- -w & nodemon server",
     "webpack": "./node_modules/webpack/bin/webpack.js",
-    "seed": "node seed"
+    "seed": "node seed",
+    "db-init": "pg-init warby_tickets"
   },
-  "author": "",
+  "author": "Jacob Rico",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
@@ -31,6 +32,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "chance": "^1.0.13",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.7.0",
     "faker": "^4.1.0",
     "webpack": "^3.11.0"
   }

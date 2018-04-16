@@ -1,4 +1,4 @@
-const { Advisor, Ticket, conn }  = require('./server/db')
+const { Advisor, Ticket, db }  = require('./server/db/models')
 
 // randomizers for seeding
 const faker = require('faker');
@@ -43,7 +43,7 @@ const seed = () => {
 
 console.log('Syncing...');
 
-conn.sync({force: true})
+db.sync({ force: true })
   .then(() => {
     console.log('Seeding...');
     return seed();
@@ -51,6 +51,6 @@ conn.sync({force: true})
   .then(()=> console.log('Database has seeded!'))
   .catch(err => console.log('!! Error while seeding !!', err))
   .finally(() => {
-    conn.close();
+    db.close();
     return null;
 });

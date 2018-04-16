@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const AdvisorItem = (props) => {
-  const { advisor } = props;
+  const { advisor, tickets } = props;
   return (
     <div className='jumbotron list-group-item'>
-      <Link to={`advisors/${advisor.id}`} >{advisor.name}</Link>: { advisor.tickets.length } { advisor.tickets.length > 1 ?  'Tickets' :  'Ticket' }
+        <Link to={`advisors/${advisor.id}`} >{advisor.name}</Link>:  { tickets.length } { tickets.length > 1 ?  'Tickets' :  'Ticket' }
       <ul>
         {
-          advisor.tickets ? 
-          advisor.tickets.map(ticket => {
+          advisor && tickets.length ? 
+          tickets.map(ticket => {
             return <li key={ticket.id}> {ticket.reason} </li>
           })
           : `${advisor.name} has no tickets yet`
@@ -21,4 +22,12 @@ const AdvisorItem = (props) => {
   )
 };
 
-export default AdvisorItem;
+const mapStateToProps = ({ tickets }, { advisor }) => {
+  const filteredTickets = tickets.filter(ticket => ticket.advisorId === advisor.id)
+  return {
+    tickets: filteredTickets,
+    advisor
+  }
+}
+
+export default connect(mapStateToProps)(AdvisorItem);

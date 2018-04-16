@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_TICKETS, CREATE_TICKET, UPDATE_TICKET, DELETE_TICKET } from './constants';
+import { GET_TICKETS, CREATE_TICKET, CREATE_ADVISOR, UPDATE_TICKET, DELETE_TICKET } from './constants';
 
 export const fetchTickets = () => {
   return (dispatch) => {
@@ -43,6 +43,8 @@ const ticketReducer = (state = [], action) => {
       return action.tickets;
     case CREATE_TICKET:
       return [...state, action.ticket];
+    case CREATE_ADVISOR: 
+      return state;
     case UPDATE_TICKET:
       return state.map(ticket => ticket.id === action.ticket.id*1 ? action.ticket : ticket);
     case DELETE_TICKET:
