@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm run webpack",
-    "start:dev": "npm run webpack -- -w & nodemon server",
+    "postinstall": "npm run webpack && npm run seed",
     "webpack": "./node_modules/webpack/bin/webpack.js",
-    "seed": "node seed"
+    "seed": "node seed",
+    "start:dev": "npm run webpack -- -w & nodemon server",
+    "start": "node server"
   },
   "author": "Jacob Rico",
   "license": "ISC",
