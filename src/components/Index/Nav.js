@@ -20,9 +20,9 @@ const Nav = () => {
           <li className='nav-item'>
             <NavLink className='nav-link' to='/tickets'> All Tickets </NavLink>
           </li>
-          <li className='nav-item'>
+          {/* <li className='nav-item'>
             <NavLink className='nav-link' to='/login'> Log in </NavLink>
-          </li>
+          </li> */}
         </ul>
         {/* : <NavLink to='/leaderboard'> Leaderboard </NavLink>
       } */}
