@@ -23,7 +23,10 @@ export const updateAdvisor = (advisor) => {
   return (dispatch) => {
     return axios.put(`/api/advisors/${advisor.id}`, advisor)
       .then(res => res.data)
-      .then(advisor => dispatch({ type: UPDATE_ADVISOR, advisor }))
+      .then(advisor => {
+        console.log(advisor)
+        dispatch({ type: UPDATE_ADVISOR, advisor })
+      })
       .catch(err => console.log('there is an error!!', err))
   }
 }
@@ -31,8 +34,7 @@ export const updateAdvisor = (advisor) => {
 export const deleteAdvisor = (advisor) => {
   return (dispatch) => {
     return axios.delete(`/api/advisors/${advisor.id}`)
-      .then(advisor => dispatch({ type: DELETE_ADVISOR, advisor }))
-      .then(() => document.location.pathname === '/advisors')
+      .then(() => dispatch({ type: DELETE_ADVISOR, advisor }))
       .catch(err => console.log('there is an error!!', err))
   }
 }

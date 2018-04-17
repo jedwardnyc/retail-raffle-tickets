@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import AdvisorItem from './AdvisorItem';
 
 const Leaderboard = (props) => {
-  const { advisors } = props;
+  const { advisors, tickets } = props;
   return (
     <div>
       <h1> Leaderboard </h1>
@@ -12,8 +12,9 @@ const Leaderboard = (props) => {
         <ul className='list-group'>
           {
             advisors.map(advisor => {
+              const advisorTix = tickets.filter(ticket => ticket.advisorId === advisor.id)
               return (
-                <li key={advisor.id} className='list-group-item'>{advisors.indexOf(advisor)+1}. {advisor.name}: {advisor.tickets.length} </li>
+                <li key={advisor.id} className='list-group-item'>{advisors.indexOf(advisor)+1}. {advisor.name}: {advisorTix.length} </li>
               )
             })
           }
@@ -23,10 +24,15 @@ const Leaderboard = (props) => {
   )
 };
 
-const mapStateToProps = (state) => {
-  const advisors = state.advisors.sort((a,b) => b.tickets.length - a.tickets.length)
+const mapStateToProps = ({ advisors, tickets }) => {
+  const rankedAdvisors = advisors.sort((a,b) => { 
+    const aTickets = tickets.filter(ticket => ticket.advisorId === a.id*1)
+    const bTickets = tickets.filter(ticket => ticket.advisorId === b.id*1)
+    return bTickets.length - aTickets.length
+  });
   return {
-    advisors
+    tickets,
+    advisors: rankedAdvisors
   }
 };
 

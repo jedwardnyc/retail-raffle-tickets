@@ -28,8 +28,8 @@ class App extends Component {
               <Switch>
                 <Route path='/' exact component={Home} />
                 <Route path='/advisors' exact component={Advisors} />
-                <Route path='/advisors/:id'  render={({ match }) => <Advisor id={match.params.id} />} />
-                <Route path='/advisors/edit' component={AdvisorForm} />  
+                <Route path='/advisors/:id' render={({ match }) => <Advisor id={match.params.id} />} />
+                <Route path='/advisors/:id/edit' component={AdvisorForm} />  
                 <Route path='/login' exact component={Login} />
                 <Route path='/tickets' component={Tickets} />
                 <Route path='/leaderboard' component={Leaderboard} />

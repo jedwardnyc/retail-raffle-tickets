@@ -8,9 +8,9 @@ const Nav = () => {
     <nav style={{marginBottom: '15px' }} className='navbar navbar-expand navbar-light'>
       {/* { isAdmin ?  */}
         <ul className='navbar-nav'>
-          <li className='nav-item'>
+          {/* <li className='nav-item'>
             <NavLink className='nav-link' to='/' exact> Home </NavLink>
-          </li>
+          </li> */}
           <li className='nav-item'>
             <NavLink className='nav-link' to='/leaderboard'> Leaderboard </NavLink>
           </li>

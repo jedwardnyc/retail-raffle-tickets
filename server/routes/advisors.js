@@ -3,7 +3,6 @@ const { Advisor, Ticket } = require('../db/models');
 
 router.get('/', (req,res,next) => {
   Advisor.findAll({
-    include: [{ model: Ticket }],
     order: [['name', 'ASC']]
   })
     .then(advisors => res.send(advisors))
@@ -25,7 +24,10 @@ router.put('/:id', (req,res,next) => {
 
 router.delete('/:id', (req,res,next) => {
   Advisor.findById(req.params.id)
-    .then(advisor => advisor.destroy())
+    .then(advisor => {
+      advisor.destroy()
+      res.sendStatus(204)
+    })
     .catch(next)
 });
 

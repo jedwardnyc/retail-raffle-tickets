@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import TicketItem from './TicketItem';
 
 const Tickets = (props) => {
-  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const { tickets } = props;
-  console.log(tickets)
+  const { tickets, advisors } = props;
   return (
     <div>
       <h1> All Tickets </h1>
@@ -14,23 +12,26 @@ const Tickets = (props) => {
           !tickets.length ?
           <h2> Whoops! Looks like no one has any tickets yet...</h2>
           :
-          tickets.map(ticket => <TicketItem key={ticket.id} ticket={ticket} /> )
+          tickets.map(ticket => {
+            const advisor = advisors.find(advisor => advisor.id === ticket.advisorId)
+            return <TicketItem key={ticket.id} advisor={advisor} ticket={ticket} /> 
+          } )
         }
       </ul>
     </div>
   )
 };
 
-const mapStateToProps = (state) => {
-
-  const tickets = state.tickets.sort((a,b) => {
+const mapStateToProps = ({ tickets, advisors }) => {
+  const sortedTickets = tickets.sort((a,b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
     return dateA.getDay() - dateB.getDay();
   })
 
   return {
-    tickets
+    tickets: sortedTickets, 
+    advisors
   }
 };
 
