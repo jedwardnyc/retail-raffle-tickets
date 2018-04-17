@@ -30,9 +30,9 @@ export const updateTicket = (ticket) => {
 
 export const deleteTicket = (ticket) => {
   return (dispatch) => {
+    console.log(ticket)
     return axios.delete(`/api/tickets/${ticket.id}`)
-      .then(ticket => dispatch({ type: DELETE_TICKET, ticket }))
-      .then(() => document.location.pathname === '/tickets')
+      .then(() => dispatch({ type: DELETE_TICKET, ticket }))
       .catch(err => console.log('there is an error!!', err))
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deleteAdvisor } from '../../store';
+import { deleteAdvisor, deleteTicket } from '../../store';
 import AdvisorForm from './AdvisorForm';
 import TicketForm from '../Tickets/TicketForm';
 
@@ -14,7 +14,7 @@ class AdvisorItem extends Component {
     };
   };
   render() {
-    const { advisor, tickets, deleteAdvisor } = this.props;
+    const { advisor, tickets, deleteAdvisor, deleteTicket } = this.props;
     const { editing, addTicket } = this.state;
     return (
       <div className='jumbotron list-group-item'>
@@ -23,7 +23,25 @@ class AdvisorItem extends Component {
           {
             advisor && tickets.length ? 
             tickets.map(ticket => {
-              return <li key={ticket.id}> {ticket.reason} </li>
+              return (
+                <div key={ticket.id}>
+                  <li> 
+                    {ticket.reason}&nbsp;
+                    {
+                      editing ? 
+                      <span 
+                        onClick={() => {
+                          deleteTicket(ticket)
+                          this.setState({ editing: false })
+                        }}
+                        className='badge badge-danger'> 
+                        x 
+                      </span>
+                      : null
+                    }
+                  </li> 
+                </div>
+              )
             })
             : `Looks like ${advisor.name.split(' ')[0]} has no tickets yet`
           }
@@ -68,7 +86,8 @@ const mapStateToProps = ({ tickets }, { advisor }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteAdvisor: (advisor) => dispatch(deleteAdvisor(advisor))
+    deleteAdvisor: (advisor) => dispatch(deleteAdvisor(advisor)),
+    deleteTicket: (ticket) => dispatch(deleteTicket(ticket))
   }
 }
 
