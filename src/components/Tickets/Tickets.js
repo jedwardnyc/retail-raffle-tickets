@@ -6,7 +6,13 @@ const Tickets = (props) => {
   const { tickets, advisors } = props;
   return (
     <div>
-      <h1> All Tickets </h1>
+      <div className='row'>
+        <h1 className='col'> All Tickets </h1>
+        <form className='col form-inline justify-content-end'>
+          <input className='form-control' placeholder='Search' /> &nbsp;
+          <button className='btn btn-sm btn-secondary' disabled={true}> Search </button>
+        </form>
+      </div>
       <ul className='list-group'>
         {
           !tickets.length ?

@@ -4,8 +4,8 @@ const { Advisor, Ticket, db }  = require('./server/db/models')
 const faker = require('faker');
 const chance = require('chance')('Warby');
 
-const numOfTickets = 0;
-const numOfAdvisors = 0;
+const numOfTickets = 10;
+const numOfAdvisors = 5;
 
 const doTimes = (n, func) => {
   const result = [];
@@ -18,12 +18,14 @@ const doTimes = (n, func) => {
 const randomAdvisor = () => {
   const gender = chance.gender();
   const name = chance.name({gender});
-  return Advisor.build({ name });
+  const username = `${name[0]}.${name[1]}`
+  const password = 'admin'
+  return Advisor.build({ name, username, password });
 };
 
 const randomTicket = () => {
   const reason = faker.random.words();
-  const date = chance.date()
+  const date = chance.date({year:2018})
   return Ticket.build({ reason: chance.capitalize(reason), date })
 };
 

@@ -25,8 +25,9 @@ class AdvisorForm extends Component {
     const { editing } = this.props;
     return (
       <div>
-        <form className='form-control' onSubmit={ editing ? this.update : this.create }>
+        <form className='form-inline' onSubmit={ editing ? this.update : this.create }>
           <input 
+            className='form-control form-control-sm' 
             value={ this.state.name }
             onChange={(ev) => this.setState({ name: ev.target.value })}
           />

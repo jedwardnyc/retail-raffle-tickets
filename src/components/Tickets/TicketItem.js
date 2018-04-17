@@ -10,7 +10,7 @@ const TicketItem = (props) => {
           <br />
         <strong>Reason:</strong> {ticket.reason}
           <br />
-        {advisor.name} 
+        { advisor ? advisor.name : null }
     </div>
   )
 };

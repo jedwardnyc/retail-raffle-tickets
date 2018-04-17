@@ -21,8 +21,11 @@ class TicketForm extends Component {
   render(){
     return (
       <div>
-        <form className='form-control' onSubmit={this.create}>
-          <input value={this.state.reason} onChange={(ev) => this.setState({ reason: ev.target.value })}/>
+        <form className='form-inline' onSubmit={this.create}>
+          <input 
+            className='form-control form-control-sm' 
+            value={this.state.reason} 
+            onChange={(ev) => this.setState({ reason: ev.target.value })}/> &nbsp;
           <button className='btn btn-sm btn-secondary'> Add Ticket </button>
         </form>
       </div>

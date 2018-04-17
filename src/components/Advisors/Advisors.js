@@ -25,21 +25,23 @@ class Advisors extends Component {
     if (!advisors) return null
     return (
       <div>
-        <h1> All Advisors </h1>
-        {
-          !editing ? null :
-          <form className='form-inline' onSubmit={this.create}>
-            <input className='form-control' onChange={(ev) => this.setState({ name: ev.target.value })}/>&nbsp;
-            <button className='btn btn-sm btn-secondary'> Add Advisor </button>
-          </form>
-        }
-        <button 
-          onClick={() => editing ? this.setState({ editing: false }) : this.setState({ editing: true })} 
-          className={editing ? 'btn btn-danger btn-sm' : 'btn btn-secondary btn-sm' }> 
-            { 
-              !editing ? 'Add Advisor' : 'Cancel'
-            }
-        </button>
+        <div>
+          <h1> All Advisors </h1>
+          {
+            !editing ? null :
+            <form className='form-inline' onSubmit={this.create}>
+              <input className='form-control' onChange={(ev) => this.setState({ name: ev.target.value })}/>&nbsp;
+              <button className='btn btn-sm btn-secondary'> Add Advisor </button>
+            </form>
+          }
+          <button 
+            onClick={() => editing ? this.setState({ editing: false }) : this.setState({ editing: true })} 
+            className={editing ? 'btn btn-danger btn-sm' : 'btn btn-secondary btn-sm' }> 
+              { 
+                !editing ? 'Add Advisor' : 'Cancel'
+              }
+          </button>
+        </div>
         <br />
         <br />
         <ul className='list-group'>
