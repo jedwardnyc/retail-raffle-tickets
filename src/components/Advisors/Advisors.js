@@ -15,8 +15,9 @@ class Advisors extends Component {
 
   create(ev){
     ev.preventDefault();
+    console.log(this.state)
     this.props.createAdvisor(this.state);
-    this.setState({ editing: false });
+    this.setState({ editing: false })
   }
 
   render(){

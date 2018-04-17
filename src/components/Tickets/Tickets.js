@@ -2,30 +2,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TicketItem from './TicketItem';
 
-const Tickets = (props) => {
-  const { tickets, advisors } = props;
-  return (
-    <div>
-      <div className='row'>
-        <h1 className='col'> All Tickets </h1>
-        <form className='col form-inline justify-content-end'>
-          <input className='form-control' placeholder='Search' /> &nbsp;
-          <button className='btn btn-sm btn-secondary' disabled={true}> Search </button>
-        </form>
+class Tickets extends Component {
+  render(){
+    const { tickets, advisors } = this.props;
+    return (
+      <div>
+        <div className='row'>
+          <h1 className='col'> All Tickets </h1>
+          <form className='col form-inline justify-content-end'>
+            <input className='form-control' name='search' type='search' placeholder='Search'/> &nbsp;
+            <button className='btn btn-sm btn-secondary' disabled={true}> Search </button>
+          </form>
+        </div>
+        <ul className='list-group'>
+          {
+            !tickets.length ?
+            <h2> Whoops! Looks like no one has any tickets yet...</h2>
+            :
+            tickets.map(ticket => {
+              const advisor = advisors.find(advisor => advisor.id === ticket.advisorId)
+              return <TicketItem key={ticket.id} advisor={advisor} ticket={ticket} /> 
+            } )
+          }
+        </ul>
       </div>
-      <ul className='list-group'>
-        {
-          !tickets.length ?
-          <h2> Whoops! Looks like no one has any tickets yet...</h2>
-          :
-          tickets.map(ticket => {
-            const advisor = advisors.find(advisor => advisor.id === ticket.advisorId)
-            return <TicketItem key={ticket.id} advisor={advisor} ticket={ticket} /> 
-          } )
-        }
-      </ul>
-    </div>
-  )
+    )
+  }
 };
 
 const mapStateToProps = ({ tickets, advisors }) => {

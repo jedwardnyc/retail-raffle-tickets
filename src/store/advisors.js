@@ -11,6 +11,7 @@ export const fetchAdvisors = () => {
 }
 
 export const createAdvisor = (advisor) => {
+  console.log(advisor)
   return (dispatch) => {
     return axios.post('/api/advisors', advisor)
       .then(res => res.data)
