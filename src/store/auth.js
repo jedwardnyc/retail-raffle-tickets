@@ -6,12 +6,38 @@ export const login = ({ email, password }, history ) => {
     return axios.post(`/auth/local/login`, { email, password })
     .then(res => res.data)
     .then(user => {
-      dispatch({type: AUTHENTICATED });
+      dispatch({ type: AUTHENTICATED });
       localStorage.setItem('user', user.token);
       history.push('/advisors');
     })
     .catch(err => console.log(err))
   };
+};
+
+export const signUp = ({ email, password }, history ) => {
+  return (dispatch) => {
+    return axios.post(`/auth/local/register`, { email, password })
+    .then(res => res.data)
+    .then(user => {
+      dispatch({ type: AUTHENTICATED });
+      localStorage.setItem('user', user.token);
+      history.push('/advisors');
+    })
+    .catch(err => console.log(err))
+  };
+};
+
+export const logout = () => {
+  return (dispatch) => {
+    localStorage.clear();
+    dispatch({ type: UNAUTHENTICATED })
+  }
+};
+
+export const keepLoggedIn = () => {
+  return (dispatch) => {
+    dispatch({ type: AUTHENTICATED })
+  }
 };
 
 const authReducer = ( state = {}, action ) => {

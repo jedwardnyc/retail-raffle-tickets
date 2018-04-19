@@ -9,7 +9,10 @@ import AdvisorForm from './Advisors/AdvisorForm';
 import Advisor from './Advisors/Advisor';
 import Tickets from './Tickets/Tickets';
 import Leaderboard from './Advisors/Leaderboard';
-import { fetchAdvisors, fetchTickets } from '../store';
+import { fetchAdvisors, fetchTickets, keepLoggedIn } from '../store';
+import noAuthNeeded from './Index/NoAuthNeeded';
+import needAuth from './Index/AuthNeeded';
+
 
 class App extends Component {
 
@@ -19,6 +22,10 @@ class App extends Component {
   }
 
   render(){
+
+    const user = localStorage.getItem('user');
+    if(user) this.props.keepLoggedIn()
+
     return (
       <div>
         <Router>
@@ -27,12 +34,12 @@ class App extends Component {
             <div className='container-fluid'>
               <Switch>
                 <Route path='/' exact component={Home} />
-                <Route path='/advisors' exact component={Advisors} />
-                <Route path='/advisors/:id' render={({ match }) => <Advisor id={match.params.id} />} />
-                <Route path='/advisors/:id/edit' component={AdvisorForm} />  
-                <Route path='/login' exact component={Login} />
-                <Route path='/tickets' component={Tickets} />
-                <Route path='/leaderboard' component={Leaderboard} />
+                <Route path='/advisors' exact component={needAuth(Advisors)} />
+                <Route path='/advisors/:id' render={({ match }) => needAuth(<Advisor id={match.params.id} />)} />
+                <Route path='/advisors/:id/edit' component={needAuth(AdvisorForm)} />  
+                <Route path='/login' exact component={noAuthNeeded(Login)} />
+                <Route path='/tickets' component={needAuth(Tickets)} />
+                <Route path='/leaderboard' component={needAuth(Leaderboard)} />
               </Switch>
             </div>
           </div>
@@ -45,7 +52,8 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAdvisors: () => dispatch(fetchAdvisors()),
-    fetchTickets: () => dispatch(fetchTickets())
+    fetchTickets: () => dispatch(fetchTickets()),
+    keepLoggedIn: () => dispatch(keepLoggedIn())
   };
 };
 

@@ -1,38 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../store';
+import { login, signUp } from '../../store';
 
 class Login extends Component{
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
     }
     this.submitLogin = this.submitLogin.bind(this);
   }
 
   submitLogin(ev) {
+    const { email, password } = this.state;
     ev.preventDefault();
-    this.props.login(this.state)
-    console.log(this.state)
+    this.props.login({ email, password })
   }
   
   render() {
+    const { email, password } = this.state;
+    const { signUp } = this.props;
     return (
       <div>
         <h1> Log in </h1>
         <div>
           <form onSubmit={this.submitLogin} className="signin-container">
-            {/* <div className="form-group">
-              <label>Username: </label>&nbsp;
-              <input
-                name="username"
-                type="username"
-                className="form-control"
-                required
-              />
-            </div> */}
             <div className="form-group">
               <label>E-Mail:</label>&nbsp;
               <input
@@ -51,10 +44,15 @@ class Login extends Component{
                 required
               />
             </div>
-            <button className="btn btn-block btn-primary"> Log in </button>
+            <button 
+              disabled={!email && !password} 
+              className="btn btn-block btn-primary"> 
+                Log in 
+            </button>
           </form>
-          <h4> Don't have an account? </h4>
-          <button> Sign up </button>
+          <h4> Don't have an account? </h4> 
+          <h5> Sign up by filling out the above fields and clicking below! </h5>
+          <button disabled={!email && !password} onClick={() => signUp({ email, password })}> Sign up </button>
         </div>
       </div>
     )
@@ -63,7 +61,8 @@ class Login extends Component{
 
 const mapDispatchToProps = (dispatch, { history }) => { 
   return {
-    login: credentials => dispatch(login(credentials, history))
+    login: credentials => dispatch(login(credentials, history)),
+    signUp: credentials => dispatch(signUp(credentials, history))
   } 
 };
 

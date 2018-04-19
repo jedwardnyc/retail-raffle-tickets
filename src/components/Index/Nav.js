@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logout } from '../../store';
 
 const Nav = (props) => {
-  const { authenticated } = props;
-  console.log(props)
+  const { authenticated, logout } = props;
   return (
     <nav style={{marginBottom: '15px' }} className='navbar navbar-expand navbar-light'>
       { !authenticated ? 
@@ -19,9 +19,6 @@ const Nav = (props) => {
           :
         <ul className='navbar-nav'>
           <li className='nav-item'>
-            <NavLink className='nav-link' to='/' exact> Home </NavLink>
-          </li> 
-          <li className='nav-item'>
             <NavLink className='nav-link' to='/leaderboard'> Leaderboard </NavLink>
           </li>
           <li className='nav-item'>
@@ -31,7 +28,7 @@ const Nav = (props) => {
             <NavLink className='nav-link' to='/tickets'> All Tickets </NavLink>
           </li>
           <li className='nav-item'>
-            <NavLink className='nav-link' to='/logout'> Log out </NavLink>
+            <NavLink className='nav-link' to='/' exact onClick={() => logout()}> Log out </NavLink>
           </li>
         </ul>
       }
@@ -45,5 +42,10 @@ const mapStateToProps = ({ auth }) => {
   }
 };
 
-// export default Nav
-export default connect(mapStateToProps)(Nav);
+const mapDispatchToProps = ( dispatch ) => {
+  return {
+    logout: () => dispatch(logout())
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);
