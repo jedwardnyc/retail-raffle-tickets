@@ -5,6 +5,11 @@ const User = conn.define('user', {
   name: {
     type: Sequelize.STRING
   },
+  username: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
   email: {
     type: Sequelize.STRING,
     allowNull: false,

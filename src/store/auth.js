@@ -2,9 +2,9 @@ import axios from 'axios';
 import { AUTHENTICATED, UNAUTHENTICATED } from './constants';
 import { errorHandler } from './errors';
 
-export const login = ({ email, password }, history ) => {
+export const login = (credentials, history ) => {
   return (dispatch) => {
-    return axios.post(`/auth/local/login`, { email, password })
+    return axios.post(`/auth/local/login`, credentials)
     .then(res => res.data)
     .then(user => {
       dispatch({ type: AUTHENTICATED });
@@ -15,9 +15,9 @@ export const login = ({ email, password }, history ) => {
   };
 };
 
-export const signUp = ({ email, password }, history ) => {
+export const signUp = ( credentials , history ) => {
   return (dispatch) => {
-    return axios.post(`/auth/local/register`, { email, password })
+    return axios.post(`/auth/local/register`, credentials)
     .then(res => res.data)
     .then(user => {
       dispatch({ type: AUTHENTICATED });

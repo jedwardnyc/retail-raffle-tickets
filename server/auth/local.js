@@ -24,14 +24,14 @@ router.get('/me', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  User.findOne({where: { email: req.body.email } })
+  User.findOne({where: { username: req.body.username } })
     .then(user => {
       const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
       if (!passwordIsValid) return res.status(401).send({ auth: false, token: null, type: 'password', message: 'Incorrect password, please try again...'});
       const token = jwt.sign({ id: user.id }, secret, {expiresIn: 86400 })
       res.status(200).send({ auth: true, token: token });
     })
-    .catch(err => res.status(404).send({ auth: false, type: 'email', message: 'Uh Oh! Looks like we can\'t find a user with that email...'}))
+    .catch(err => res.status(404).send({ auth: false, type: 'username', message: 'Uh Oh! Looks like we can\'t find a user with that email...'}))
 });
 
 module.exports = router;
