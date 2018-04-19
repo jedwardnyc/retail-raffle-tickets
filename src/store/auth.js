@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { AUTHENTICATED, UNAUTHENTICATED, AUTHENTICATION_ERROR } from './constants';
+import { AUTHENTICATED, UNAUTHENTICATED } from './constants';
+import { errorHandler } from './errors';
 
 export const login = ({ email, password }, history ) => {
   return (dispatch) => {
@@ -10,7 +11,7 @@ export const login = ({ email, password }, history ) => {
       localStorage.setItem('user', user.token);
       history.push('/advisors');
     })
-    .catch(err => console.log(err))
+    .catch(err => dispatch(errorHandler(err.response.data)))
   };
 };
 
@@ -23,7 +24,7 @@ export const signUp = ({ email, password }, history ) => {
       localStorage.setItem('user', user.token);
       history.push('/advisors');
     })
-    .catch(err => console.log(err))
+    .catch(err => dispatch(errorHandler(err.response.data)))
   };
 };
 
@@ -46,8 +47,6 @@ const authReducer = ( state = {}, action ) => {
       return Object.assign({}, state, { authenticated: true });
     case UNAUTHENTICATED:
       return Object.assign({}, state, { authenticated: false });
-    case AUTHENTICATION_ERROR:
-      return Object.assign({}, state, { error: action.payload });
     default:
       return state;
   };
