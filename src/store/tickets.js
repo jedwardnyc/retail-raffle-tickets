@@ -7,8 +7,8 @@ export const fetchTickets = () => {
       .then(res => res.data)
       .then(tickets => dispatch({ type: GET_TICKETS, tickets }))
       .catch(err => console.log('there is an error!!', err))
-  }
-}
+  };
+};
 
 export const createTicket = (ticket) => {
   return (dispatch) => {
@@ -16,8 +16,8 @@ export const createTicket = (ticket) => {
       .then(res => res.data)
       .then(ticket => dispatch({ type: CREATE_TICKET, ticket }))
       .catch(err => console.log('there is an error!!', err))
-  }
-}
+  };
+};
 
 export const updateTicket = (ticket) => {
   return (dispatch) => {
@@ -25,8 +25,8 @@ export const updateTicket = (ticket) => {
       .then(res => res.data)
       .then(ticket => dispatch({ type: UPDATE_TICKET, ticket }))
       .catch(err => console.log('there is an error!!', err))
-  }
-}
+  };
+};
 
 export const deleteTicket = (ticket) => {
   return (dispatch) => {
@@ -34,8 +34,8 @@ export const deleteTicket = (ticket) => {
     return axios.delete(`/api/tickets/${ticket.id}`)
       .then(() => dispatch({ type: DELETE_TICKET, ticket }))
       .catch(err => console.log('there is an error!!', err))
-  }
-}
+  };
+};
 
 const ticketReducer = (state = [], action) => {
   switch(action.type){
@@ -51,7 +51,7 @@ const ticketReducer = (state = [], action) => {
       return state.filter(ticket => ticket.id !== action.ticket.id*1);
     default: 
       return state;
-  }
-}
+  };
+};
 
 export default ticketReducer;

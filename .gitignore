@@ -1,3 +1,4 @@
 /node_modules
 /public/bundle.*
 .eslintrc.js
+server/auth/config.js

@@ -6,13 +6,14 @@ class Tickets extends Component {
   constructor(){
     super();
     this.state = {
-      filteredAdvisors:[]
+      filteredAdvisors: []
     }
   }
   render(){
     const { tickets, advisors } = this.props;
     const { filteredAdvisors } = this.state;
     const filteredTickets = tickets;
+    // const filteredTickets = filteredAdvisors ? tickets.reduce() : tickets;
     return (
       <div>
         <div className='row'>
@@ -34,7 +35,7 @@ class Tickets extends Component {
               type='search' 
               placeholder='Search'/> 
               &nbsp;
-            <button className='btn btn-sm btn-secondary' disabled={!filteredAdvisors}> Filter </button>
+             Filter
           </form>
         </div>
         <ul className='list-group'>

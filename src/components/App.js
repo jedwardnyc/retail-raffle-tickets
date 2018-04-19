@@ -26,7 +26,7 @@ class App extends Component {
             <Nav />
             <div className='container-fluid'>
               <Switch>
-                <Route path='/' exact component={Advisors} />
+                <Route path='/' exact component={Home} />
                 <Route path='/advisors' exact component={Advisors} />
                 <Route path='/advisors/:id' render={({ match }) => <Advisor id={match.params.id} />} />
                 <Route path='/advisors/:id/edit' component={AdvisorForm} />  

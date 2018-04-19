@@ -2,15 +2,25 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const Nav = () => {
-  // const { isAdmin } = props;
+const Nav = (props) => {
+  const { authenticated } = props;
+  console.log(props)
   return (
     <nav style={{marginBottom: '15px' }} className='navbar navbar-expand navbar-light'>
-      {/* { isAdmin ?  */}
+      { !authenticated ? 
         <ul className='navbar-nav'>
-          {/* <li className='nav-item'>
+          <li className='nav-item'>
             <NavLink className='nav-link' to='/' exact> Home </NavLink>
-          </li> */}
+          </li> 
+          <li className='nav-item'>
+            <NavLink className='nav-link' to='/login'> Log in </NavLink>
+          </li>
+        </ul>
+          :
+        <ul className='navbar-nav'>
+          <li className='nav-item'>
+            <NavLink className='nav-link' to='/' exact> Home </NavLink>
+          </li> 
           <li className='nav-item'>
             <NavLink className='nav-link' to='/leaderboard'> Leaderboard </NavLink>
           </li>
@@ -20,22 +30,20 @@ const Nav = () => {
           <li className='nav-item'>
             <NavLink className='nav-link' to='/tickets'> All Tickets </NavLink>
           </li>
-          {/* <li className='nav-item'>
-            <NavLink className='nav-link' to='/login'> Log in </NavLink>
-          </li> */}
+          <li className='nav-item'>
+            <NavLink className='nav-link' to='/logout'> Log out </NavLink>
+          </li>
         </ul>
-        {/* : <NavLink to='/leaderboard'> Leaderboard </NavLink>
-      } */}
+      }
     </nav>
   )
 };
 
-const mapStateToProps = ({ isAdmin }) => {
+const mapStateToProps = ({ auth }) => {
   return {
-    isAdmin
+    authenticated: auth.authenticated
   }
 };
 
-
-export default Nav
-// export default connect(mapStateToProps)(Nav);
+// export default Nav
+export default connect(mapStateToProps)(Nav);
