@@ -29,24 +29,28 @@ class Advisors extends Component {
         <div className='advisorTitle'>
           <div className='allAdvisors'> All Advisors </div>
           <hr className='advisorHR'/>
+          <div className='advisorsForm'>
           {
             !editing ? null :
-            <form className='form-inline' onSubmit={this.create}>
-              <input className='form-control' onChange={(ev) => this.setState({ name: ev.target.value })}/>&nbsp;
-              <button className='btn btn-sm btn-secondary'> Add Advisor </button>
+            <form className='inlineForm' onSubmit={this.create}>
+              <input className='form-control inlineFormInput' onChange={(ev) => this.setState({ name: ev.target.value })}/>&nbsp;
+              <div className='inlineFormButton'>
+                <button className='btn btn-sm btn-secondary'> Add Advisor </button>
+              </div>
             </form>
           }
-          <button 
-            onClick={() => editing ? this.setState({ editing: false }) : this.setState({ editing: true })} 
-            className={editing ? 'btn btn-danger btn-sm advisorButton' : 'btn btn-secondary btn-sm advisorButton' }> 
-              { 
-                !editing ? 'Add Advisor' : 'Cancel'
-              }
-          </button>
+          </div>
+          <div className='advisorsButtons'>
+            <button 
+              onClick={() => editing ? this.setState({ editing: false }) : this.setState({ editing: true })} 
+              className={editing ? 'btn btn-danger btn-sm' : 'btn btn-secondary btn-sm' }> 
+                { 
+                  !editing ? 'Add Advisor' : 'Cancel'
+                }
+            </button>
+          </div>
         </div>
-        <br />
-        <br />
-        <ul className='advisorList list-group'>
+        <div className='advisorList list-group'>
           {
             !advisors.length ? 
             <h2> There are no Advisors, please add some! </h2>
@@ -57,7 +61,7 @@ class Advisors extends Component {
               )
             })
           }
-        </ul>
+        </div>
       </div>
     )
   }

@@ -19,14 +19,13 @@ class AdvisorItem extends Component {
     return (
       <div className='jumbotron advisorItem'>
         <Link className='advisorLink' to={`advisors/${advisor.id}`} >{advisor.name}</Link> 
-        <h3>{ tickets.length } { tickets.length === 1 ?  'Ticket' :  'Tickets' }</h3>
-        <ul className='list-group'>
+        <h3 className='numTickets'>{ tickets.length } { tickets.length === 1 ?  'Ticket' :  'Tickets' }</h3>
+        <div className='list-group advisorTickets'>
           {
             advisor && tickets.length ? 
             tickets.map(ticket => {
               return (
                 <div key={ticket.id}>
-                  <li> 
                     {ticket.reason}&nbsp;
                     {
                       editing ? 
@@ -40,38 +39,40 @@ class AdvisorItem extends Component {
                       </span>
                       : null
                     }
-                  </li> 
                 </div>
               )
             })
             : `Looks like ${advisor.name.split(' ')[0]} has no tickets yet`
           }
-        </ul>
-        <br />
+        </div>
+        <div className='advisorForm'>
           {
             addTicket ? <TicketForm advisor={advisor}/> : null
           }
           {
             editing ? <AdvisorForm advisor={advisor} editing={editing}/> : null
           }
-        <button 
-          disabled={ editing ? true : false }
-          className={ addTicket ? 'btn btn-sm btn-danger' : 'btn btn-sm btn-secondary' }
-          onClick={() => addTicket ? this.setState({ addTicket: false }) : this.setState({ addTicket: true })}>
-          { addTicket ? 'Cancel' : 'Add Ticket' }
-        </button> &nbsp;
-        <button 
-          disabled={ addTicket ? true : false }
-          className={ editing ? 'btn btn-sm btn-danger' : 'btn btn-sm btn-success' }
-          onClick={() => editing ? this.setState({ editing: false }) : this.setState({ editing: true })}>
-          { editing ? 'Cancel' : 'Edit Advisor' }
-        </button> &nbsp;
-        <button 
-          disabled={ editing || addTicket ? true : false } 
-          className={ 'btn btn-sm btn-danger' }
-          onClick={() => deleteAdvisor(advisor)}> 
-          Delete Advisor 
-        </button>
+        </div>
+        <div className='advisorButtons'>
+          <button 
+            disabled={ editing ? true : false }
+            className={ addTicket ? 'btn btn-sm btn-danger' : 'btn btn-sm btn-secondary' }
+            onClick={() => addTicket ? this.setState({ addTicket: false }) : this.setState({ addTicket: true })}>
+            { addTicket ? 'Cancel' : 'Add Ticket' }
+          </button> &nbsp;
+          <button 
+            disabled={ addTicket ? true : false }
+            className={ editing ? 'btn btn-sm btn-danger' : 'btn btn-sm btn-success' }
+            onClick={() => editing ? this.setState({ editing: false }) : this.setState({ editing: true })}>
+            { editing ? 'Cancel' : 'Edit Advisor' }
+          </button> &nbsp;
+          <button 
+            disabled={ editing || addTicket ? true : false } 
+            className={ 'btn btn-sm btn-danger' }
+            onClick={() => deleteAdvisor(advisor)}> 
+            Delete Advisor 
+          </button>
+        </div>
       </div>
     ) 
   }

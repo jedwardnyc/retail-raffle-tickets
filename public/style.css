@@ -6,49 +6,102 @@
   text-align: center;
 }
 
-/* Advisor styles */
-#advisors {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
+.inlineForm {
+  display: grid;
+  grid-template-columns: 2fr 0.25fr 1fr;
+  grid-template-areas: 'input . button';
+  align-self: center;
 }
 
-#advisors form {
-  margin-bottom: 0em;
+.inlineFormInput{
+  grid-area: 'input';
+  height: 35px;
+}
+
+.inlineFormButton {
+  grid-area: 'button';
+}
+
+/* Advisor styles */
+#advisors {
+  display: grid;
+  text-align: center;
+  grid-row-gap: 20px;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-rows: 25% 70% 5%;
 }
 
 .advisorTitle {
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-rows: 70% 5% 25%;
+  grid-column: 2;
   font-size: 60px;
 }
 
-.advisorsButton {
-  height: 30px;
+.allAdvisors{
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .advisorHR {
+  grid-column: 2;
+  grid-row: 2;
   width: 220px;
 }
 
-.advisorList {
-  width: 80%;
-  padding-bottom: 20px;
+.advisorsForm {
+  grid-column: 2;
+  grid-row: 3;
+  justify-self: center;
+  align-self: flex-start;
+}
+
+.advisorsButtons {
+  grid-column: 2;
+  grid-row: 3;
+  align-self: center;
 }
 
 .advisorItem {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   padding: 20px 10px;
 }
 
 .advisorLink {
+  grid-column: 2;
+  grid-row: 1;
   font-size: 40px;
 }
 
-.advisorItem ul {
-  list-style-type: none;
-  padding: 10x 10px;
+.advisorTickets {
+  grid-column: 2;
+  grid-row: 3;
 }
 
+.numTickets {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+}
+
+.advisorButtons {
+  grid-column: 2;
+  grid-row: 5;
+}
+
+.advisorList {
+  grid-column: 2;
+  padding-bottom: 20px;
+}
+
+.advisorForm {
+  grid-column: 2;
+  grid-row: 4;
+  justify-self: center;
+}
 
 
 /* Log in / Sign up styles */
