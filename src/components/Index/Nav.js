@@ -31,6 +31,7 @@ const Nav = (props) => {
             <NavLink className='nav-link' to='/' exact onClick={() => logout()}> Log out </NavLink>
           </li>
         </ul>
+        
       }
     </nav>
   )
@@ -38,13 +39,13 @@ const Nav = (props) => {
 
 const mapStateToProps = ({ auth }) => {
   return {
-    authenticated: auth.authenticated
+    authenticated: auth.authenticated,
   }
 };
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
   }
 };
 

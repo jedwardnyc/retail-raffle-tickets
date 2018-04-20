@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTHENTICATED, UNAUTHENTICATED } from './constants';
+import { AUTHENTICATED, UNAUTHENTICATED, GET_USER } from './constants';
 import { errorHandler } from './errors';
 
 export const login = (credentials, history ) => {

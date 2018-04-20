@@ -142,7 +142,7 @@ const mapStateToProps = ({ error }) => {
 const mapDispatchToProps = (dispatch, { history }) => { 
   return {
     login: credentials => dispatch(login(credentials, history)),
-    signUp: credentials => dispatch(signUp(credentials, history)),
+    signUp: user => dispatch(signUp(user, history)),
     clearErrors: () => dispatch(clearErrors())
   } 
 };

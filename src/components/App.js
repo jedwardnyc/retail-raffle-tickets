@@ -24,7 +24,7 @@ class App extends Component {
   render(){
 
     const user = localStorage.getItem('user');
-    if(user) this.props.keepLoggedIn()
+    if(user) this.props.keepLoggedIn();
 
     return (
       <div>
@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchAdvisors: () => dispatch(fetchAdvisors()),
     fetchTickets: () => dispatch(fetchTickets()),
-    keepLoggedIn: () => dispatch(keepLoggedIn())
+    keepLoggedIn: () => dispatch(keepLoggedIn()),
   };
 };
 
