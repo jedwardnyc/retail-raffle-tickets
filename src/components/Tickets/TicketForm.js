@@ -20,7 +20,7 @@ class TicketForm extends Component {
 
   render(){
     return (
-      <div>
+      <div className='advisorForm'>
         <form className='form-inline' onSubmit={this.create}>
           <input 
             className='form-control form-control-sm' 

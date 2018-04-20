@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+
+.center{
+  text-align: center;
+}
+
+/* Advisor styles */
+#advisors {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+#advisors form {
+  margin-bottom: 0em;
+}
+
+.advisorTitle {
+  align-items: center;
+  font-size: 60px;
+}
+
+.advisorsButton {
+  height: 30px;
+}
+
+.advisorHR {
+  width: 220px;
+}
+
+.advisorList {
+  width: 80%;
+  padding-bottom: 20px;
+}
+
+.advisorItem {
+  padding: 20px 10px;
+}
+
+.advisorLink {
+  font-size: 40px;
+}
+
+.advisorItem ul {
+  list-style-type: none;
+  padding: 10x 10px;
+}
+
+
+
+/* Log in / Sign up styles */
+
+#login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 120px;
+}
+
+.loginTitle{
+  margin-bottom: 20px;
+}
+
+.loginInput {
+  width: 380px;
+  margin-bottom: 20px;
+}
+
+.loginButton {
+  width: 25%;
+  margin-top: 20px;
+}
+
+.loginHR {
+  width: 30%;
+}
+

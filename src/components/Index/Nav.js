@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../store';
 
 const Nav = (props) => {
+  window.scrollTo(0,0);
   const { authenticated, logout } = props;
   return (
     <nav style={{marginBottom: '15px' }} className='navbar navbar-expand navbar-light'>

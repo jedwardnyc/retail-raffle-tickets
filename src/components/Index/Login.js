@@ -32,101 +32,96 @@ class Login extends Component{
     return (
       <div>
         { signup ? 
-          <h1> Create an account </h1>
+          <h1 className='center loginTitle'> Create an account </h1>
           :
-          <h1> Log in </h1>
+          <h1 className='center loginTitle'> Log in </h1>
         }
         <div>
-          <div>
-            <form onSubmit={this.submit} className='jumbotron'>
-            { error.type === 'username' ? <p><strong>{error.message}</strong></p> : null }
-            {
-              signup ? 
+          <form id='login' onSubmit={this.submit}>
+          { error.type === 'username' ? <p><strong>{error.message}</strong></p> : null }
+          {
+            signup ? 
+              <div>
                 <div>
-                  <div className='form-group'>
-                    <label> Full Name:</label>&nbsp;
-                    <input
-                      onChange={(ev) => this.setState({ name: ev.target.value })}
-                      value={name}
-                      type='name'
-                      className={`form-control  ${error.type === 'name' ? 'is-invalid' : '' }` }
-                      placeholder='ex. Jane Doe'
-                      required
-                    />
-                    <div className='invalid-feedback'>
-                      {error.message}
-                    </div>
-                  </div>
-                  <div className='form-group'>
-                    <label> Email: </label>&nbsp;
-                    <input
-                      onChange={(ev) => this.setState({ email: ev.target.value })}
-                      value={email}
-                      type='email'
-                      className={`form-control  ${error.type === 'email' ? 'is-invalid' : '' }` }
-                      placeholder='example@domain.com'
-                      required
-                    />
-                    <div className='invalid-feedback'>
-                      {error.message}
-                    </div>
+                  <input
+                    onChange={(ev) => this.setState({ name: ev.target.value })}
+                    value={name}
+                    type='name'
+                    className={`form-control loginInput ${error.type === 'name' ? 'is-invalid' : '' }` }
+                    placeholder='Full Name'
+                    required
+                  />
+                  <div className='invalid-feedback'>
+                    {error.message}
                   </div>
                 </div>
-              : null
-            }
-            <div className='form-group'>
-                <label> Username:</label>&nbsp;
-                <input
-                  onChange={(ev) => this.setState({ username: ev.target.value })}
-                  value={username}
-                  type='username'
-                  className={`form-control  ${error.type === 'unique' ? 'is-invalid' : '' }` }
-                  placeholder='Enter username'
-                  required
-                />
-                <div className='invalid-feedback'>
-                  {error.message}
+                <div>
+                  <input
+                    onChange={(ev) => this.setState({ email: ev.target.value })}
+                    value={email}
+                    type='email'
+                    className={`form-control loginInput ${error.type === 'email' ? 'is-invalid' : '' }` }
+                    placeholder='Email Address'
+                    required
+                  />
+                  <div className='invalid-feedback'>
+                    {error.message}
+                  </div>
                 </div>
               </div>
-              <div className='form-group'>
-                <label>Password: </label>&nbsp;
-                <input
-                  onChange={(ev) => this.setState({ password: ev.target.value })}
-                  value={password}
-                  type='password'
-                  className={`form-control  ${error.type === 'password' ? 'is-invalid' : '' }` }
-                  placeholder='secret password'
-                  required
-                />
-                <div className='invalid-feedback'>
-                  {error.message}
-                </div>
+            : null
+          }
+          <div>
+              <input
+                onChange={(ev) => this.setState({ username: ev.target.value })}
+                value={username}
+                type='username'
+                className={`form-control loginInput ${error.type === 'unique' ? 'is-invalid' : '' }` }
+                placeholder='Username'
+                required
+              />
+              <div className='invalid-feedback'>
+                {error.message}
               </div>
-              <button disabled={!username && !password} className='btn btn-block btn-primary'> { signup ? 'Sign up' : 'Log in' } </button>
-            </form>
-            { 
-              signup ? 
-              <h4> or &nbsp;
-                <a href='#' 
-                  onClick={(ev)=> {
-                    ev.preventDefault();
-                    clearErrors();
-                    this.setState({ signup: false, password: '', username: '' })}}>
-                  Log in 
-                </a> 
-              </h4>
-              :
-              <h4> Don't have an account? &nbsp;
-                <a href='#' 
-                  onClick={(ev)=> {
-                    ev.preventDefault();
-                    clearErrors();
-                    this.setState({ signup: true, password: '', username: '' })}}>
-                  Sign up here! 
-                </a>
-              </h4>       
-            }
-          </div>
+            </div>
+            <div>
+              <input
+                onChange={(ev) => this.setState({ password: ev.target.value })}
+                value={password}
+                type='password'
+                className={`form-control loginInput ${error.type === 'password' ? 'is-invalid' : '' }` }
+                placeholder='Password'
+                required
+              />
+              <div className='invalid-feedback'>
+                {error.message}
+              </div>
+            </div>
+            <button disabled={!username && !password} className='btn btn-block btn-primary loginButton'> { signup ? 'Sign up' : 'Log in' } </button>
+          </form>
+          <hr className='loginHR'/>
+          { 
+            signup ? 
+            <h4 className='center'> or &nbsp;
+              <a href='#' 
+                onClick={(ev)=> {
+                  ev.preventDefault();
+                  clearErrors();
+                  this.setState({ signup: false, password: '', username: '' })}}>
+                Log in 
+              </a> 
+            </h4>
+            :
+            <h4 className='center'> Don't have an account? &nbsp;
+              <a href='#' 
+                onClick={(ev)=> {
+                  ev.preventDefault();
+                  clearErrors();
+                  this.setState({ signup: true, password: '', username: '' })}}>
+                Sign up here! 
+              </a>
+            </h4>       
+          }
         </div>
       </div>
     )

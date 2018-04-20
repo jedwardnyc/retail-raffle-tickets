@@ -25,9 +25,10 @@ class Advisors extends Component {
     const { editing } = this.state;
     if (!advisors) return null
     return (
-      <div>
-        <div>
-          <h1> All Advisors </h1>
+      <div id='advisors'>
+        <div className='advisorTitle'>
+          <div className='allAdvisors'> All Advisors </div>
+          <hr className='advisorHR'/>
           {
             !editing ? null :
             <form className='form-inline' onSubmit={this.create}>
@@ -37,7 +38,7 @@ class Advisors extends Component {
           }
           <button 
             onClick={() => editing ? this.setState({ editing: false }) : this.setState({ editing: true })} 
-            className={editing ? 'btn btn-danger btn-sm' : 'btn btn-secondary btn-sm' }> 
+            className={editing ? 'btn btn-danger btn-sm advisorButton' : 'btn btn-secondary btn-sm advisorButton' }> 
               { 
                 !editing ? 'Add Advisor' : 'Cancel'
               }
@@ -45,7 +46,7 @@ class Advisors extends Component {
         </div>
         <br />
         <br />
-        <ul className='list-group'>
+        <ul className='advisorList list-group'>
           {
             !advisors.length ? 
             <h2> There are no Advisors, please add some! </h2>

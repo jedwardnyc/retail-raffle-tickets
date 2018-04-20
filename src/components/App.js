@@ -22,7 +22,6 @@ class App extends Component {
   }
 
   render(){
-
     const user = localStorage.getItem('user');
     if(user) this.props.keepLoggedIn();
 

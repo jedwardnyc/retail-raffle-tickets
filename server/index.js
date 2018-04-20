@@ -7,6 +7,7 @@ app.use(require('body-parser').urlencoded({ extended: true }));
 
 app.use('/public', express.static('public'));
 app.use('/vendor', express.static('node_modules'));
+app.use('/src', express.static('src'))
 
 app.use('/api', require('./routes'));
 app.use('/auth', require('./auth'));

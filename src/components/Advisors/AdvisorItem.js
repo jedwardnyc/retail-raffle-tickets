@@ -17,9 +17,10 @@ class AdvisorItem extends Component {
     const { advisor, tickets, deleteAdvisor, deleteTicket } = this.props;
     const { editing, addTicket } = this.state;
     return (
-      <div className='jumbotron list-group-item'>
-        <Link to={`advisors/${advisor.id}`} >{advisor.name}</Link>:  { tickets.length } { tickets.length === 1 ?  'Ticket' :  'Tickets' }
-        <ul>
+      <div className='jumbotron advisorItem'>
+        <Link className='advisorLink' to={`advisors/${advisor.id}`} >{advisor.name}</Link> 
+        <h3>{ tickets.length } { tickets.length === 1 ?  'Ticket' :  'Tickets' }</h3>
+        <ul className='list-group'>
           {
             advisor && tickets.length ? 
             tickets.map(ticket => {
@@ -47,12 +48,12 @@ class AdvisorItem extends Component {
           }
         </ul>
         <br />
-        {
-          addTicket ? <TicketForm advisor={advisor}/> : null
-        }
-        {
-          editing ? <AdvisorForm advisor={advisor} editing={editing}/> : null
-        }
+          {
+            addTicket ? <TicketForm advisor={advisor}/> : null
+          }
+          {
+            editing ? <AdvisorForm advisor={advisor} editing={editing}/> : null
+          }
         <button 
           disabled={ editing ? true : false }
           className={ addTicket ? 'btn btn-sm btn-danger' : 'btn btn-sm btn-secondary' }
