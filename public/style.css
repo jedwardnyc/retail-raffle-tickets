@@ -80,19 +80,55 @@ nav a {
   font-size: 60px;
 }
 
-.leaderboard-subtext {
+.leaderboard-subtitle-1 {
   grid-column: 2;
   grid-row: 2;
-  margin-bottom: 45px;
-  font-size: 25px;
+  justify-self: left;
+  margin-top: 10px;
 }
 
-.leaderboard-table {
+.leaderboard-subtitle-2 {
+  grid-column: 2;
+  justify-self: left;
+  margin-top: 10px;
+}
+
+.leaderboard-subtitle-3 {
+  grid-column: 2;
+  justify-self: left;
+  margin-top: 10px;
+}
+
+.leaderboard-table-1 {
   grid-column: 2;
   grid-row: 3;
   display: grid;
   grid-template-rows: auto;
   text-align: left;
+  margin-top: 5px;
+}
+
+.leaderboard-table-2 {
+  grid-column: 2;
+  display: grid;
+  grid-template-rows: auto;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.leaderboard-table-3 {
+  grid-column: 2;
+  display: grid;
+  grid-template-rows: auto;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.leaderboard-subtext {
+  grid-column: 2;
+  grid-row: 2;
+  margin-bottom: 45px;
+  font-size: 25px;
 }
 
 .leaderboard-header {
