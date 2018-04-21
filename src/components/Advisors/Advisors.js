@@ -26,20 +26,18 @@ class Advisors extends Component {
     if (!advisors) return null
     return (
       <div id='advisors'>
-        <div className='advisorTitle'>
-          <div className='allAdvisors'> All Advisors </div>
-          <div className='advisorsForm'>
+        <div className='advisor-title'>
+          <div className='all-advisors'> All Advisors </div>
           {
             !editing ? null :
-            <form className='inlineForm' onSubmit={this.create}>
-              <input className='form-control inlineFormInput' onChange={(ev) => this.setState({ name: ev.target.value })}/>&nbsp;
-              <div className='inlineFormButton'>
+            <form className='advisors-form' onSubmit={this.create}>
+              <input className='form-control advisors-form-input' onChange={(ev) => this.setState({ name: ev.target.value })}/>&nbsp;
+              <div className='advisors-form-button'>
                 <button className='btn btn-sm btn-dark'> Add Advisor </button>
               </div>
             </form>
           }
-          </div>
-          <div className='advisorsButtons'>
+          <div className='advisors-button'>
             <button 
               onClick={() => editing ? this.setState({ editing: false }) : this.setState({ editing: true })} 
               className={editing ? 'btn btn-danger btn-sm' : 'btn btn-dark btn-sm' }> 
@@ -49,7 +47,7 @@ class Advisors extends Component {
             </button>
           </div>
         </div>
-        <div className='advisorList'>
+        <div className='advisor-list'>
           {
             !advisors.length ? 
             <h2> There are no Advisors, please add some! </h2>

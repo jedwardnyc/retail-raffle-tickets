@@ -17,11 +17,11 @@ class AdvisorItem extends Component {
     const { advisor, tickets, deleteAdvisor, deleteTicket } = this.props;
     const { editing, addTicket } = this.state;
     return (
-      <div className='advisorItem'>
-        <div className='advisorLink'>
+      <div className='advisor-item'>
+        <div className='advisor-link'>
           <Link to={`advisors/${advisor.id}`} >{advisor.name}</Link>: { tickets.length } { tickets.length === 1 ?  'Ticket' :  'Tickets' }
         </div>
-        <div className='list-group advisorTickets'>
+        <div className='list-group advisor-tickets'>
           {
             advisor && tickets.length ? 
             tickets.map(ticket => {
@@ -46,7 +46,7 @@ class AdvisorItem extends Component {
             : `Looks like ${advisor.name.split(' ')[0]} has no tickets yet`
           }
         </div>
-        <div className='advisorForm'>
+        <div className='advisor-form'>
           {
             addTicket ? <TicketForm advisor={advisor}/> : null
           }
@@ -54,7 +54,7 @@ class AdvisorItem extends Component {
             editing ? <AdvisorForm advisor={advisor} editing={editing}/> : null
           }
         </div>
-        <div className='advisorButtons'>
+        <div className='advisor-buttons'>
           <button 
             disabled={ editing ? true : false }
             className={ addTicket ? 'btn btn-sm btn-danger' : 'btn btn-sm btn-dark' }

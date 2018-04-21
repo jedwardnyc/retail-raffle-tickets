@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdvisorItem from './AdvisorItem';
+import Table from './LeaderboardTable';
 import moment from 'moment';
 import advisorReducer from '../../store/advisors';
 
 const Leaderboard = (props) => {
-  
+
   const { advisors, 
     tickets, 
     weeklyAdvisors,
@@ -25,90 +26,28 @@ const Leaderboard = (props) => {
       <hr />
       <div className='leaderboard-subtext'> 
         { 
-          location.hash === '#/' ? 'See which advisor has the most tickets right now!' : null 
+          location.hash === '#/' ? 'See which advisor has the most tickets right now!' : null
         } 
       </div>
-      <h3 className='leaderboard-subtitle-1'> All Time </h3>
-      <div className='leaderboard-table-1'>
-        <div className='leaderboard-line leaderboard-header'>
-          <div className='leaderboard-name'> Name </div> 
-          <div className='leaderboard-tickets'> Tickets </div>
-        </div>
-        {
-          advisors.map(advisor => {
-            const advisorTix = tickets.filter(ticket => ticket.advisorId === advisor.id)
-            return (
-              <div key={advisor.id} className='leaderboard-line'>
-                <span className='leaderboard-number'> #{advisors.indexOf(advisor)+1} </span>
-                <div className='leaderboard-name'> {advisor.name} </div> 
-                <div className='leaderboard-tickets'> {advisorTix.length} </div>
-              </div>
-            )
-          })
-        }
-      </div>
-      <h3 className='leaderboard-subtitle-2'> Quarterly </h3>
-      <div className='leaderboard-table-2'>
-        <div className='leaderboard-line leaderboard-header'>
-          <div className='leaderboard-name'> Name </div> 
-          <div className='leaderboard-tickets'> Tickets </div>
-        </div>
-        {
-          quarterlyAdvisors.map(advisor => {
-            const advisorTix = quarterlyTickets.filter(ticket => ticket.advisorId === advisor.id)
-            return (
-              <div key={advisor.id} className='leaderboard-line'>
-                <span className='leaderboard-number'> #{advisors.indexOf(advisor)+1} </span>
-                <div className='leaderboard-name'> {advisor.name} </div> 
-                <div className='leaderboard-tickets'> {advisorTix.length} </div>
-              </div>
-            )
-          })
-        }
-      </div>
-      <h3 className='leaderboard-subtitle-2'> Monthly </h3>
-      <div className='leaderboard-table-2'>
-        <div className='leaderboard-line leaderboard-header'>
-          <div className='leaderboard-name'> Name </div> 
-          <div className='leaderboard-tickets'> Tickets </div>
-        </div>
-        {
-          monthlyAdvisors.map(advisor => {
-            const advisorTix = monthlyTickets.filter(ticket => ticket.advisorId === advisor.id)
-            return (
-              <div key={advisor.id} className='leaderboard-line'>
-                <span className='leaderboard-number'> #{advisors.indexOf(advisor)+1} </span>
-                <div className='leaderboard-name'> {advisor.name} </div> 
-                <div className='leaderboard-tickets'> {advisorTix.length} </div>
-              </div>
-            )
-          })
-        }
-      </div>
-      <h3 className='leaderboard-subtitle-3'> Weekly </h3>
-      <div className='leaderboard-table-3'>
-        <div className='leaderboard-line leaderboard-header'>
-          <div className='leaderboard-name'> Name </div> 
-          <div className='leaderboard-tickets'> Tickets </div>
-        </div>
-        {
-          weeklyAdvisors.map(advisor => {
-            const advisorTix = weeklyTickets.filter(ticket => ticket.advisorId === advisor.id)
-            return (
-              <div key={advisor.id} className='leaderboard-line'>
-                <span className='leaderboard-number'> #{advisors.indexOf(advisor)+1} </span>
-                <div className='leaderboard-name'> {advisor.name} </div> 
-                <div className='leaderboard-tickets'> {advisorTix.length} </div>
-              </div>
-            )
-          })
-        }
-      </div>
+      <h3 className='leaderboard-subtitle-root'> All Time </h3>
+      <Table ext={'-root'} advisors={advisors} tickets={tickets} />
+      <h3 className='leaderboard-subtitle'> Quarterly </h3>
+      <Table time={'Quarter'} advisors={quarterlyAdvisors} tickets={quarterlyTickets} />
+      <h3 className='leaderboard-subtitle'> Monthly </h3>
+      <Table time={'Month'} advisors={monthlyAdvisors} tickets={monthlyTickets} />
+      <h3 className='leaderboard-subtitle'> Weekly </h3>
+      <Table time={'Week'} advisors={weeklyAdvisors} tickets={weeklyTickets} />
     </div>
   )
 };
 
 const mapStateToProps = ({ advisors, tickets }) => {
+
+  const filterAdvisors = (memo, advisor, ticket) => {
+    if(ticket.advisorId === advisor.id){
+      !memo.includes(advisor) ? memo.push(advisor) : null
+    };
+  };
 
   const weeklyTickets = tickets.filter(ticket => {
     return (
@@ -119,9 +58,7 @@ const mapStateToProps = ({ advisors, tickets }) => {
 
   const weeklyAdvisors = advisors.reduce((memo, advisor) => {
     weeklyTickets.forEach(ticket => {
-      if(ticket.advisorId === advisor.id){
-        !memo.includes(advisor) ? memo.push(advisor) : null
-      };
+      filterAdvisors(memo, advisor, ticket)
     });
     return memo
   }, []);
@@ -135,9 +72,7 @@ const mapStateToProps = ({ advisors, tickets }) => {
 
   const monthlyAdvisors = advisors.reduce((memo, advisor) => {
     monthlyTickets.forEach(ticket => {
-      if(ticket.advisorId === advisor.id){
-        !memo.includes(advisor) ? memo.push(advisor) : null
-      };
+      filterAdvisors(memo, advisor, ticket)
     });
     return memo
   }, []);
@@ -151,9 +86,7 @@ const mapStateToProps = ({ advisors, tickets }) => {
   
   const quarterlyAdvisors = advisors.reduce((memo, advisor) => {
     quarterlyTickets.forEach(ticket => {
-      if(ticket.advisorId === advisor.id){
-        !memo.includes(advisor) ? memo.push(advisor) : null
-      };
+      filterAdvisors(memo, advisor, ticket)
     });
     return memo
   }, []);
@@ -165,11 +98,11 @@ const mapStateToProps = ({ advisors, tickets }) => {
   });
 
   return {
-    tickets,
     advisors: rankedAdvisors(advisors),
     weeklyAdvisors: rankedAdvisors(weeklyAdvisors),
     monthlyAdvisors: rankedAdvisors(monthlyAdvisors),
     quarterlyAdvisors: rankedAdvisors(quarterlyAdvisors),
+    tickets,
     weeklyTickets,
     monthlyTickets,
     quarterlyTickets

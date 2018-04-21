@@ -12,33 +12,42 @@ class Tickets extends Component {
   render(){
     const { tickets, advisors } = this.props;
     const { filteredAdvisors } = this.state;
-    const filteredTickets = tickets;
-    // const filteredTickets = filteredAdvisors ? tickets.reduce() : tickets;
+
+    const filteredTickets = filteredAdvisors.length ? filteredAdvisors.reduce((memo, advisor) => {
+      tickets.forEach(ticket => {
+        if(ticket.advisorId === advisor.id){
+          memo.push(ticket)
+        }
+      })
+      return memo
+    }, []) : tickets;
+    
     return (
-      <div>
-        <div className='row'>
-          <h1 className='col'> All Tickets </h1>
-          <form className='col form-inline justify-content-end'>
-            <input 
-              onChange={(ev) => {
-                let filteredAdvisors = advisors.filter(advisor => {
-                  return (
-                    advisor.name
-                    .toLowerCase()
-                    .includes(ev.target.value.toLowerCase())
-                  )
-                })
-                this.setState({ filteredAdvisors: filteredAdvisors ? filteredAdvisors : [] })
-              }}
-              className='form-control' 
-              name='search' 
-              type='search' 
-              placeholder='Search'/> 
-              &nbsp;
-             Filter
-          </form>
+      <div id='tickets'>
+        <div className='tickets-title'>
+          <div className='tickets-text'> All Tickets </div>
+          <div className='tickets-filter'>
+            <p className='filter-text'> Filter by Name: </p>
+            <form className='filter-input'>
+              <input 
+                onChange={(ev) => {
+                  let filteredAdvisors = advisors.filter(advisor => {
+                    return (
+                      advisor.name
+                      .toLowerCase()
+                      .includes(ev.target.value.toLowerCase())
+                    )
+                  })
+                  this.setState({ filteredAdvisors: filteredAdvisors ? filteredAdvisors : [] })
+                }}
+                className='form-control' 
+                name='search' 
+                type='search' 
+                placeholder='Advisor Name'/> 
+            </form>
+          </div>
         </div>
-        <ul className='list-group'>
+        <div className='tickets-list'>
           {
             !tickets.length ?
             <h2> Whoops! Looks like no one has any tickets yet...</h2>
@@ -48,7 +57,7 @@ class Tickets extends Component {
               return <TicketItem key={ticket.id} advisor={advisor} ticket={ticket} /> 
             } )
           }
-        </ul>
+        </div>
       </div>
     )
   }

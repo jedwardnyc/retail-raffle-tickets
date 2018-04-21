@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { createTicket } from '../../store';
 
 class TicketForm extends Component {
@@ -13,7 +14,7 @@ class TicketForm extends Component {
   }
 
   create(ev){
-    this.setState({ date: Date.now() })
+    this.setState({ date: moment() })
     this.props.createTicket(this.state);
     this.setState({ reason: '' })
   };
