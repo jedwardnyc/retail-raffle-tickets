@@ -28,14 +28,13 @@ class Advisors extends Component {
       <div id='advisors'>
         <div className='advisorTitle'>
           <div className='allAdvisors'> All Advisors </div>
-          <hr className='advisorHR'/>
           <div className='advisorsForm'>
           {
             !editing ? null :
             <form className='inlineForm' onSubmit={this.create}>
               <input className='form-control inlineFormInput' onChange={(ev) => this.setState({ name: ev.target.value })}/>&nbsp;
               <div className='inlineFormButton'>
-                <button className='btn btn-sm btn-secondary'> Add Advisor </button>
+                <button className='btn btn-sm btn-dark'> Add Advisor </button>
               </div>
             </form>
           }
@@ -43,14 +42,14 @@ class Advisors extends Component {
           <div className='advisorsButtons'>
             <button 
               onClick={() => editing ? this.setState({ editing: false }) : this.setState({ editing: true })} 
-              className={editing ? 'btn btn-danger btn-sm' : 'btn btn-secondary btn-sm' }> 
+              className={editing ? 'btn btn-danger btn-sm' : 'btn btn-dark btn-sm' }> 
                 { 
                   !editing ? 'Add Advisor' : 'Cancel'
                 }
             </button>
           </div>
         </div>
-        <div className='advisorList list-group'>
+        <div className='advisorList'>
           {
             !advisors.length ? 
             <h2> There are no Advisors, please add some! </h2>

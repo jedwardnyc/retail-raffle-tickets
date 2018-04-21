@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../store';
 
@@ -7,32 +7,31 @@ const Nav = (props) => {
   window.scrollTo(0,0);
   const { authenticated, logout } = props;
   return (
-    <nav style={{marginBottom: '15px' }} className='navbar navbar-expand navbar-light'>
+    <nav className='navbar navbar-expand navbar-light navGrid'>
       { !authenticated ? 
         <ul className='navbar-nav'>
           <li className='nav-item'>
-            <NavLink className='nav-link' to='/' exact> Home </NavLink>
+            <Link className='nav-link' to='/'> Home </Link>
           </li> 
-          <li className='nav-item'>
-            <NavLink className='nav-link' to='/login'> Log in </NavLink>
+          <li className='nav-item loginNav'>
+            <Link className='nav-link loginNav' to='/login'> Log in </Link>
           </li>
         </ul>
           :
-        <ul className='navbar-nav'>
+        <ul className='navbar-nav navGrid'>
           <li className='nav-item'>
-            <NavLink className='nav-link' to='/leaderboard'> Leaderboard </NavLink>
+            <Link className='nav-link' to='/leaderboard'> Leaderboard </Link>
           </li>
           <li className='nav-item'>
-            <NavLink className='nav-link' to='/advisors' exact> All Advisors </NavLink>
+            <Link className='nav-link' to='/advisors'> All Advisors </Link>
           </li>
           <li className='nav-item'>
-            <NavLink className='nav-link' to='/tickets'> All Tickets </NavLink>
+            <Link className='nav-link' to='/tickets'> All Tickets </Link>
           </li>
-          <li className='nav-item'>
-            <NavLink className='nav-link' to='/' exact onClick={() => logout()}> Log out </NavLink>
+          <li className='nav-item loginNav'>
+            <Link className='nav-link' to='/' onClick={() => logout()}> Log out </Link>
           </li>
         </ul>
-        
       }
     </nav>
   )

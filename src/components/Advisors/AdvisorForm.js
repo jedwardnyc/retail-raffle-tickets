@@ -5,7 +5,7 @@ import { createAdvisor, updateAdvisor } from '../../store';
 class AdvisorForm extends Component {
   constructor(props){
     super(props);
-    this.state = Object.assign({}, this.props.advisor)
+    this.state = this.props.advisor;
     this.create = this.create.bind(this);
     this.update = this.update.bind(this);
   }
@@ -21,7 +21,6 @@ class AdvisorForm extends Component {
   }
 
   render(){
-    console.log(this.props)
     const { editing } = this.props;
     return (
       <div>
@@ -31,7 +30,7 @@ class AdvisorForm extends Component {
             value={ this.state.name }
             onChange={(ev) => this.setState({ name: ev.target.value })}
           />
-          <button className='btn btn-sm btn-secondary'> { editing ? 'Edit Advisor' : 'Add Advisor' }</button>
+          <button className='btn btn-sm btn-secondary'> Edit Advisor </button>
         </form>
       </div>
     )

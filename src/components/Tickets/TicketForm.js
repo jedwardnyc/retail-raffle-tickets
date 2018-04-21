@@ -26,7 +26,7 @@ class TicketForm extends Component {
             className='form-control form-control-sm' 
             value={this.state.reason} 
             onChange={(ev) => this.setState({ reason: ev.target.value })}/> &nbsp;
-          <button className='btn btn-sm btn-secondary'> Add Ticket </button>
+          <button className='btn btn-sm btn-dark'> Add Ticket </button>
         </form>
       </div>
     )

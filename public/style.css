@@ -1,10 +1,18 @@
+/* Global */
+
 * {
   box-sizing: border-box;
+}
+
+body {
+  background-color: whitesmoke;
 }
 
 .center{
   text-align: center;
 }
+
+/* Global Forms */
 
 .inlineForm {
   display: grid;
@@ -22,7 +30,108 @@
   grid-area: 'button';
 }
 
-/* Advisor styles */
+/* Nav */
+
+nav {
+  background-color: white; 
+  box-shadow: 1px 1px 3px darkslategrey;
+  margin-bottom: 20px;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+nav a {
+  color: #3f4a56;
+}
+
+/* Home */
+
+#home {
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template-columns: 1fr 4fr 1fr;
+  margin-bottom: 100px;
+}
+
+#home .leaderboard-title {
+  margin: 20px 0;
+}
+
+#home .leaderboard-text {
+  text-align: left;
+}
+
+.home-text {
+  grid-row: 2;
+  grid-column: 2;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+}
+
+.home-subtext {
+  font-size: 20px;
+}
+
+/* Leaderboard */
+
+#leaderboard {
+  margin-bottom: 25px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+}
+
+.leaderboard-title {
+  grid-column: 2;
+  margin-top: 20px;
+  font-size: 60px;
+}
+
+.leaderboard-subtext {
+  grid-column: 2;
+  grid-row: 2;
+  margin-bottom: 45px;
+  font-size: 35px;
+}
+
+.leaderboard-table {
+  grid-column: 2;
+  grid-row: 3;
+  display: grid;
+  grid-template-rows: auto;
+  text-align: left;
+}
+
+.leaderboard-header {
+  background: #00a5ea;
+  color: white;
+}
+
+.leaderboard-line {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-column: span 4;
+  border: 1px solid black;
+}
+
+.leaderboard-number {
+  grid-column: 1;
+  justify-self: center;
+}
+
+.leaderboard-name {
+  grid-column: 2;
+  justify-self: center;
+}
+
+.leaderboard-tickets {
+  grid-column: 3;
+  justify-self: center;
+}
+
+/* Advisor */
+
 #advisors {
   display: grid;
   text-align: center;
@@ -31,10 +140,14 @@
   grid-template-rows: 25% 70% 5%;
 }
 
+#advisors a {
+  color: black;
+}
+
 .advisorTitle {
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
-  grid-template-rows: 70% 5% 25%;
+  grid-template-rows: 70% 10% 15%;
   grid-column: 2;
   font-size: 60px;
 }
@@ -48,13 +161,14 @@
   grid-column: 2;
   grid-row: 2;
   width: 220px;
+  color:  darkslategray;
 }
 
 .advisorsForm {
   grid-column: 2;
   grid-row: 3;
   justify-self: center;
-  align-self: flex-start;
+  align-self: center;
 }
 
 .advisorsButtons {
@@ -66,14 +180,19 @@
 .advisorItem {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-row-gap: 10px;
   padding: 20px 10px;
+  background-color: #efefef;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px darkslategray;
 }
 
 .advisorLink {
   grid-column: 2;
   grid-row: 1;
   font-size: 40px;
+  color: black;
 }
 
 .advisorTickets {
@@ -94,7 +213,9 @@
 
 .advisorList {
   grid-column: 2;
+  display: grid;
   padding-bottom: 20px;
+  grid-row-gap: 10px;
 }
 
 .advisorForm {
@@ -103,8 +224,9 @@
   justify-self: center;
 }
 
+/* Tickets */
 
-/* Log in / Sign up styles */
+/* Log in / Sign up */
 
 #login {
   display: flex;
@@ -115,6 +237,7 @@
 
 .loginTitle{
   margin-bottom: 20px;
+  padding-top: 80px;
 }
 
 .loginInput {
