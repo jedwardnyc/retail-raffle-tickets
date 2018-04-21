@@ -4,11 +4,12 @@ import AdvisorItem from './AdvisorItem';
 
 const Leaderboard = (props) => {
   const { advisors, tickets } = props;
+  console.log(location.hash)
   return (
     <div id='leaderboard'>
-      <div className='leaderboard-title'> Leaderboard </div>
+      <div className='leaderboard-title'> { location.hash === '#/leaderboard' ? 'Leaderboard' : 'Welcome!' } </div>
       <hr />
-      <div className='leaderboard-subtext'> See which advisor has the most tickets right now! </div>
+      <div className='leaderboard-subtext'> { location.hash === '#/' ? 'See which advisor has the most tickets right now!' : null } </div>
       <div className='leaderboard-table'>
         <div className='leaderboard-line leaderboard-header'>
           <div className='leaderboard-name'> Name </div> 
