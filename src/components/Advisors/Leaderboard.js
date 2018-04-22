@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import AdvisorItem from './AdvisorItem';
 import Table from './LeaderboardTable';
-import moment from 'moment';
 import advisorReducer from '../../store/advisors';
 
 const Leaderboard = (props) => {
@@ -57,7 +57,7 @@ const mapStateToProps = ({ advisors, tickets }) => {
   });
 
   const weeklyAdvisors = advisors.reduce((memo, advisor) => {
-    weeklyTickets.forEach(ticket => {
+    weeklyTickets.map(ticket => {
       filterAdvisors(memo, advisor, ticket)
     });
     return memo
@@ -71,7 +71,7 @@ const mapStateToProps = ({ advisors, tickets }) => {
   });
 
   const monthlyAdvisors = advisors.reduce((memo, advisor) => {
-    monthlyTickets.forEach(ticket => {
+    monthlyTickets.map(ticket => {
       filterAdvisors(memo, advisor, ticket)
     });
     return memo
@@ -85,7 +85,7 @@ const mapStateToProps = ({ advisors, tickets }) => {
   });
   
   const quarterlyAdvisors = advisors.reduce((memo, advisor) => {
-    quarterlyTickets.forEach(ticket => {
+    quarterlyTickets.map(ticket => {
       filterAdvisors(memo, advisor, ticket)
     });
     return memo

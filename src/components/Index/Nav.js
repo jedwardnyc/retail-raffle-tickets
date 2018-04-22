@@ -7,33 +7,30 @@ const Nav = (props) => {
   window.scrollTo(0,0);
   const { authenticated, logout } = props;
   return (
-    <nav className='navbar navbar-expand navbar-light navGrid'>
+    <div id='nav'>
       { !authenticated ? 
-        <ul className='navbar-nav'>
-          <li className='nav-item'>
+        <div className='nav-grid'>
+          <div className='nav-list'>
             <Link className='nav-link' to='/'> Home </Link>
-          </li> 
-          <li className='nav-item loginNav'>
-            <Link className='nav-link loginNav' to='/login'> Log in </Link>
-          </li>
-        </ul>
+          </div> 
+          <div className='nav-login'>
+            <Link to='/login'> Log in </Link>
+          </div>
+        </div>
           :
-        <ul className='navbar-nav navGrid'>
-          <li className='nav-item'>
+        <div className='nav-grid'>
+          <div className='nav-list'>
             <Link className='nav-link' to='/leaderboard'> Leaderboard </Link>
-          </li>
-          <li className='nav-item'>
             <Link className='nav-link' to='/advisors'> All Advisors </Link>
-          </li>
-          <li className='nav-item'>
             <Link className='nav-link' to='/tickets'> All Tickets </Link>
-          </li>
-          <li className='nav-item loginNav'>
-            <Link className='nav-link' to='/' onClick={() => logout()}> Log out </Link>
-          </li>
-        </ul>
+            <Link className='nav-link' to='/winner'> Pick A Winner </Link>
+          </div>
+          <div className='nav-login'>
+            <Link to='/' onClick={() => logout()}> Log out </Link>
+          </div>
+        </div>
       }
-    </nav>
+    </div>
   )
 };
 

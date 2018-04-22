@@ -7,6 +7,7 @@ import Login from './Index/Login';
 import Advisors from './Advisors/Advisors';
 import AdvisorForm from './Advisors/AdvisorForm';
 import Advisor from './Advisors/Advisor';
+import Winner from './Advisors/Winner';
 import Tickets from './Tickets/Tickets';
 import Leaderboard from './Advisors/Leaderboard';
 import { fetchAdvisors, fetchTickets, keepLoggedIn } from '../store';
@@ -39,6 +40,7 @@ class App extends Component {
                 <Route path='/login' exact component={noAuthNeeded(Login)} />
                 <Route path='/tickets' component={needAuth(Tickets)} />
                 <Route path='/leaderboard' component={needAuth(Leaderboard)} />
+                <Route path='/winner' component={Winner} />
               </Switch>
             </div>
           </div>

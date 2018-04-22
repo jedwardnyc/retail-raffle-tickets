@@ -14,7 +14,7 @@ body {
 
 /* Nav */
 
-nav {
+#nav {
   background-color: white; 
   box-shadow: 1px 1px 3px darkslategrey;
   margin-bottom: 20px;
@@ -22,8 +22,38 @@ nav {
   font-weight: bold;
 }
 
-nav a {
+#nav a {
   color: #3f4a56;
+}
+
+#nav a:hover {
+  color: slategray
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  grid-template-rows: 100%;
+}
+
+.nav-login {
+  grid-column: 2;
+  align-self: center;
+  justify-self: center;
+}
+
+.nav-list {
+  display: inline-grid;
+  grid-column: 1;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding-left: 30px;
+  justify-self: left;
+}
+
+.nav-link {
+  grid-row: 1;
+  padding: 10px 0px;
+  justify-self: space-evenly;
 }
 
 /* Home */
@@ -85,6 +115,7 @@ nav a {
   grid-template-rows: auto;
   text-align: left;
   margin-top: 5px;
+  background-color: white;
 }
 
 .leaderboard-table {
@@ -93,6 +124,7 @@ nav a {
   grid-template-rows: auto;
   text-align: left;
   margin-top: 5px;
+  background-color: white;
 }
 
 .leaderboard-header {
@@ -234,6 +266,7 @@ nav a {
 }
 
 /* Tickets */
+
 #tickets {
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
@@ -255,6 +288,12 @@ nav a {
 .tickets-list {
   grid-row: 2;
   grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.tickets-line {
+  text-align: center;
 }
 
 .tickets-filter {
@@ -302,3 +341,41 @@ nav a {
   width: 30%;
 }
 
+/* Winner */
+
+#Winner {
+  margin-bottom: 45px;
+  text-align: center;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 4fr 1fr;
+}
+
+.winner {
+  grid-column: 2;
+  font-size: 40px;
+}
+
+.winner-title {
+  grid-column: 2;
+  margin-top: 20px;
+  font-size: 60px;
+}
+
+.winner-button {
+  grid-column: 2;
+}
+
+.drumroll {
+  grid-column: 2;
+}
+
+.drumroll-gif {
+  grid-column: 2;
+  max-width: 600px;
+}
+
+.drumroll-text {
+  font-size: 30px;
+  grid-column: 2;
+}

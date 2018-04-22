@@ -11,7 +11,6 @@ export const fetchAdvisors = () => {
 }
 
 export const createAdvisor = (advisor) => {
-  console.log(advisor)
   return (dispatch) => {
     return axios.post('/api/advisors', advisor)
       .then(res => res.data)
@@ -24,10 +23,7 @@ export const updateAdvisor = (advisor) => {
   return (dispatch) => {
     return axios.put(`/api/advisors/${advisor.id}`, advisor)
       .then(res => res.data)
-      .then(advisor => {
-        console.log(advisor)
-        dispatch({ type: UPDATE_ADVISOR, advisor })
-      })
+      .then(advisor => dispatch({ type: UPDATE_ADVISOR, advisor }))
       .catch(err => console.log('there is an error!!', err))
   }
 }

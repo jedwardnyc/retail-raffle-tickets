@@ -54,8 +54,12 @@ class Tickets extends Component {
             :
             filteredTickets.map(ticket => {
               const advisor = advisors.find(advisor => advisor.id === ticket.advisorId)
-              return <TicketItem key={ticket.id} advisor={advisor} ticket={ticket} /> 
-            } )
+              return (
+              <div key={ticket.id} className='tickets-line'>
+                <TicketItem advisor={advisor} ticket={ticket} />
+              </div>
+              )
+            })
           }
         </div>
       </div>
