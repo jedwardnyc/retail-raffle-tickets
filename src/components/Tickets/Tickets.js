@@ -50,7 +50,7 @@ class Tickets extends Component {
         <div className='tickets-list'>
           {
             !tickets.length ?
-            <h2> Whoops! Looks like no one has any tickets yet...</h2>
+            <div className='no-tickets'> Whoops! Looks like no one has any tickets yet...</div>
             :
             filteredTickets.map(ticket => {
               const advisor = advisors.find(advisor => advisor.id === ticket.advisorId)

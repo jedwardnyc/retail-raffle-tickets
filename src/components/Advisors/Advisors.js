@@ -50,7 +50,7 @@ class Advisors extends Component {
         <div className='advisor-list'>
           {
             !advisors.length ? 
-            <h2> There are no Advisors, please add some! </h2>
+            <div className='no-advisors'> Looks like there are no Advisors, please add some! </div>
             :
             advisors.map(advisor => {
               return (

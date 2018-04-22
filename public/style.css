@@ -209,7 +209,14 @@ body {
   grid-row: 2;
   justify-self: right;
   align-self: center;
-  padding-right: 100px;
+  padding-right: 20px;
+}
+
+.no-advisors {
+  grid-column: 1 / -1;
+  font-size: 40px;
+  justify-self: center;
+  margin-top: 35px;
 }
 
 .advisor-item {
@@ -301,6 +308,13 @@ body {
   grid-template-columns: 1fr 2fr;
   grid-template-areas: 'text input';
   padding-top: 20px;
+}
+
+.no-tickets {
+  grid-column: 1 / -1;
+  font-size: 40px;
+  justify-self: center;
+  margin-top: 40px;
 }
 
 .filter-text {
